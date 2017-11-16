@@ -1,0 +1,34 @@
+
+// grid
+$totalColumn : 97rem;
+$gutter      : 2.6rem;
+$nbColumn    : 12;
+$nbGutter    : $nbColumn - 1;
+$totalGutter : $gutter * $nbGutter;
+$columnValue : ($totalColumn - $totalGutter) / $nbColumn;
+$typeGrid : grid;
+
+// colors
+$white : #fff;
+$black : #333;
+$blue  : #458dac;
+$gold  : #b69961;
+
+// break point
+$break-t : $totalColumn;
+$break-m : 500px;
+
+// typo
+$NameTypo : Calibri, Helvetica, sans-serif;
+
+// placeholder
+%clearfix{
+  &::after{
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+
+$paddingSite: 1.5rem;

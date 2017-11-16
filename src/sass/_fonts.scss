@@ -1,0 +1,15 @@
+$fonts : (
+  'itcB' : 'ITCAvantGardePro-Bk'
+);
+@each $name, $url in $fonts{
+  @font-face {
+    font-family: $name;
+    font-style: normal;
+    font-weight: normal;
+    src: url("../../fonts/" + $url + ".otf") format("otf"),
+         url("../../fonts/" + $url + ".woff") format("woff"),
+         url("../../fonts/" + $url + ".eot") format("embedded-opentype"),
+         url("../../fonts/" + $url + ".ttf") format("truetype"),
+         url("../../fonts/" + $url + ".svg") format("svg");
+  }
+}

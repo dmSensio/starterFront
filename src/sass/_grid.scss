@@ -1,0 +1,144 @@
+@if ($typeGrid == float){
+  @for $i from 1 through 12{
+    .grid_#{$i}{
+      @extend %clearfix;
+      > * {
+        float: left;
+        width: calc((100% - (#{$i} - 1) * #{$gutter}) / #{$i});
+        margin-top: $gutter;
+        margin-left: $gutter;
+        &:nth-child(#{$i}n + 1){
+          margin-left: 0;
+          clear: both;
+        }
+        &:nth-child(-n + #{$i}){
+          margin-top: 0;
+        }
+        @media (max-width: $break-m) {
+          width: 100%;
+          margin-left: 0;
+          &:nth-child(n + 2){
+            margin-top: $gutter;
+          }
+        }
+        &.full{
+          width: 100%;
+        }
+        &.full,
+        &.full + *,
+        &.push{
+          margin-left: 0;
+        }
+        &.pull{
+          margin-left: $gutter !important;
+        }
+        &.no-clear{
+          clear: none;
+          margin-left: $gutter;
+        }
+        &.clear{
+          clear: both;
+        }
+      }
+      + [class*="grid_"]{
+        margin-top: $gutter;
+      }
+    }
+  }
+  @for $i from 1 through 12{
+    .col_#{$i}{
+      width: $columnValue * $i + ($gutter * ($i - 1));
+      ~ *{
+        clear:none;
+      }
+    }
+  }
+  @for $i from 1 through 6{
+    .h-gutter-#{$i}{
+      > * {
+        margin-top: $i+rem;
+      }
+    }
+  }
+  @mixin grid($nbElem, $gutter : $gutter){
+    > * {
+      float: left;
+      width: calc((100% - (#{$nbElem} - 1) * #{$gutter}) / #{$nbElem});
+      margin-top: $gutter;
+      margin-left: $gutter;
+      @content;
+      &:nth-child(#{$nbElem}n + 1){
+        margin-left: 0;
+        clear: both;
+      }
+      &:nth-child(-n + #{$nbElem}){
+        margin-top: 0;
+      }
+    }
+  }
+  .elementGrid{
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 10rem;
+  }
+}
+@elseif ($typeGrid == grid) {
+  .elementGrid{
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 10rem;
+  }
+  @for $i from 1 through 12{
+    .grid_#{$i}{
+      display: flex;
+      flex-wrap: wrap;
+      > * {
+        width: calc((100% - (#{$i} - 1) * #{$gutter}) / #{$i});
+        margin-left: $gutter;
+        margin-top: $gutter;
+        &:nth-child(#{$i}n + 1){
+          margin-left: 0;
+        }
+        &:nth-child(-n + #{$i}){
+          margin-top: 0;
+        }
+        @for $i from 1 through 12{
+          &.col_#{$i}{
+            width: $columnValue * $i + ($gutter * ($i - 1));
+          }
+        }
+        &.full{
+          width: 100%;
+          flex-basis: 100%;
+        }
+        &.full,
+        &.full + *,
+        &.push{
+          margin-left: 0;
+        }
+        &.pull{
+          margin-left: $gutter !important;
+        }
+      }
+      @for $i from 1 through 6{
+        &.mtop_#{$i}{
+          > *{
+            margin-top: $i + rem;
+          }
+        }
+      }
+      + [class*="grid_"]{
+        margin-top: $gutter;
+      }
+    }
+  }
+  @for $i from 1 through 12{
+    .col_#{$i}{
+      width: $columnValue * $i + ($gutter * ($i - 1));
+    }
+  }
+}
